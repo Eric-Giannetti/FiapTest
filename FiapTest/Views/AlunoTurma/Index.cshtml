@@ -3,8 +3,8 @@
 
 <table>
     <tr>
-        <th>Usuário</th>
-        <th>Senha</th>
+        <th>Aluno</th>
+        <th>Turma</th>
         <th></th>
         <th></th>
     </tr>
@@ -14,7 +14,7 @@
             <td>@aluno.aluno.Nome</td>
             <td>@aluno.turma.NomeTurma</td>
             <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Editar </a></button></td>
-            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> @(aluno.IsDeleted ? "Reativar" : "Excluir") </a></button></td>
+            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Excluir </a></button></td>
         </tr>
     }
 </table>

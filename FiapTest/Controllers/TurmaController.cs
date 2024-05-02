@@ -13,7 +13,7 @@ public class TurmaController : Controller
 
     public IActionResult Index()
     {
-        var result = _turmaBusinessRules.GetAll();
+        var result = _turmaBusinessRules.GetAll().ValueOrDefault;
         return View(result);
     }
 }

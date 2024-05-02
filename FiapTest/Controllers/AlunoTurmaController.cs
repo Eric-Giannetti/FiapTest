@@ -18,9 +18,9 @@ public class AlunoTurmaController : Controller
     public IActionResult Index()
     {
        List<AlunoTurmaDto> result = new List<AlunoTurmaDto>();
-        var alunoTurmas = _turmaBusinessRules.GetAllTurmasWithAlunos();
+        var alunoTurmas = _turmaBusinessRules.GetAllTurmasWithAlunos().ValueOrDefault;
 
-        foreach(var item in alunoTurmas.ValueOrDefault)
+        foreach(var item in alunoTurmas)
         {
             result.Add(new AlunoTurmaDto
             {

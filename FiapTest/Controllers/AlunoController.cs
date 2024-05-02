@@ -19,10 +19,13 @@ public class AlunoController : Controller
     }
     public IActionResult Create(Aluno aluno)
     {
-        if (aluno != null)
+        if (aluno != null && aluno.Nome != null)
+        {
             _alunoBusinessRules.Inserir(aluno);
+            return RedirectToAction("Index", "Aluno");
+        }
 
-        return View();
+        return View(aluno);
     }
     public IActionResult Editar(int id)
     {
