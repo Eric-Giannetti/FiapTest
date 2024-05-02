@@ -2,13 +2,13 @@
 using UniversityBusinessRules.UniversityBusinessRules;
 using UniversityModels;
 
-namespace FiapTest.Controllers;
+namespace APIFiap.Controllers;
 
 [Route("api/[controller]")]
-public class UniversityController : Controller
+public class AlunoController : Controller
 {
     private AlunoBusinessRules _alunoBusinessRules;
-    public UniversityController(AlunoBusinessRules alunoBusinessRules)
+    public AlunoController(AlunoBusinessRules alunoBusinessRules)
     {
         _alunoBusinessRules = alunoBusinessRules;
     }

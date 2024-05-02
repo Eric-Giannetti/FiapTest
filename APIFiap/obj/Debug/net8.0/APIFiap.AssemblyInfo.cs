@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APIFiap")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f150c405b7dada8626832fea03d89b80a59cf2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea67c7e1d57a7d3ec242df1069b761fba3430509")]
 [assembly: System.Reflection.AssemblyProductAttribute("APIFiap")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APIFiap")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
