@@ -2,7 +2,6 @@
 {
     public enum CursoEnum
     {
-        //cursos de TI
         Desenvolvimento_Web = 1,
         Desenvolvimento_Mobile = 2,
         Desenvolvimento_De_Jogos = 3,

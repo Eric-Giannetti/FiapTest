@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapTest", "FiapTest\FiapTest.csproj", "{F885588A-4146-4291-921B-6F2A3EA49FEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapTest", "FiapTest\FiapTest.csproj", "{F885588A-4146-4291-921B-6F2A3EA49FEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{2E6E1619-8A12-46D9-802A-77CF6026F053}"
 EndProject
@@ -13,13 +13,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessRules", "BusinessRu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{22A7E840-D178-47CE-B33D-79571F0D16EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityModels", "UniversityModels\UniversityModels.csproj", "{0AB98040-FBE5-449B-A851-C083A6C06E5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityModels", "UniversityModels\UniversityModels.csproj", "{0AB98040-FBE5-449B-A851-C083A6C06E5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionDataBase", "ConnectionDataBase\ConnectionDataBase.csproj", "{157DD88F-3831-4F68-B744-234F1D0C208B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectionDataBase", "ConnectionDataBase\ConnectionDataBase.csproj", "{157DD88F-3831-4F68-B744-234F1D0C208B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityBusinessRules", "UniversityBusinessRules\UniversityBusinessRules.csproj", "{DADDBE5E-59E8-4FBD-AA0C-59A03619FE55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityBusinessRules", "UniversityBusinessRules\UniversityBusinessRules.csproj", "{DADDBE5E-59E8-4FBD-AA0C-59A03619FE55}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0AB98040-FBE5-449B-A851-C083A6C06E5B} = {0AB98040-FBE5-449B-A851-C083A6C06E5B}
+		{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F} = {0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F}
+		{157DD88F-3831-4F68-B744-234F1D0C208B} = {157DD88F-3831-4F68-B744-234F1D0C208B}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityDtos", "UniversityDtos\UniversityDtos.csproj", "{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityDtos", "UniversityDtos\UniversityDtos.csproj", "{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{5AF7A4F9-1FFA-4A86-AE21-E9391CAA671A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfacesProject", "InterfacesProject\InterfacesProject.csproj", "{25072EEF-1F3F-4DF1-9692-5D37764D1085}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +56,10 @@ Global
 		{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +70,7 @@ Global
 		{157DD88F-3831-4F68-B744-234F1D0C208B} = {22A7E840-D178-47CE-B33D-79571F0D16EF}
 		{DADDBE5E-59E8-4FBD-AA0C-59A03619FE55} = {BE57B925-8D06-4938-826B-66E0353EDB3A}
 		{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F} = {169E9901-17DB-4140-894A-6BE37667B1D9}
+		{25072EEF-1F3F-4DF1-9692-5D37764D1085} = {5AF7A4F9-1FFA-4A86-AE21-E9391CAA671A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40AF482C-2800-4DD7-AD5E-5D288D6B4355}

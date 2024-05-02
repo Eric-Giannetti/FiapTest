@@ -1,0 +1,13 @@
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\bin\Debug\net8.0\InterfacesProject.deps.json
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\bin\Debug\net8.0\InterfacesProject.dll
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\bin\Debug\net8.0\InterfacesProject.pdb
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.csproj.AssemblyReference.cache
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.AssemblyInfoInputs.cache
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.AssemblyInfo.cs
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.csproj.CoreCompileInputs.cache
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.sourcelink.json
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.dll
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\refint\InterfacesProject.dll
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\InterfacesProject.pdb
+D:\Projetos\Entrevistas\FIAP\FiapTest\InterfacesProject\obj\Debug\net8.0\ref\InterfacesProject.dll

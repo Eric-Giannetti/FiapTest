@@ -1,7 +1,16 @@
+using ConnectionDataBase.University;
+using InterfacesProject;
+using UniversityBusinessRules.UniversityBusinessRules;
+using UniversityModels;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<AlunoBusinessRules>();
+builder.Services.AddScoped<TurmaBusinessRules>();
+builder.Services.AddScoped<AlunoProvider>();
+builder.Services.AddScoped<TurmaProvider>();
 
 var app = builder.Build();
 

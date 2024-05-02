@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityModels
+namespace UniversityModels;
+
+public class Aluno
 {
-    public class Aluno
-    {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Usuário { get; set; }
-        public string Senha { get; set; }
-    }
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Usuario { get; set; }
+    public string Senha { get; set; }
 }
