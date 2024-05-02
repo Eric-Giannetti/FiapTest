@@ -16,6 +16,8 @@ public class TurmaBusinessRules : ICrud<Turma>
 
     public Result Atualizar(Turma obj)
     {
+        if (obj is null || obj.Id == 0) return Result.Fail("Id inválido");
+        if (obj.Ano < DateTime.Now.Year) return Result.Fail("Data de início não pode ser maior que a data de fim");
         return _turmaProvider.Atualizar(obj);
     }
 

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projetos\\Entrevistas\\FIAP\\FIapTest\\InterfacesProject\\InterfacesProject.csproj": {}
+    "C:\\Projetos\\Eric\\FiapTest\\InterfacesProject\\InterfacesProject.csproj": {}
   },
   "projects": {
-    "D:\\Projetos\\Entrevistas\\FIAP\\FIapTest\\InterfacesProject\\InterfacesProject.csproj": {
+    "C:\\Projetos\\Eric\\FiapTest\\InterfacesProject\\InterfacesProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\Entrevistas\\FIAP\\FIapTest\\InterfacesProject\\InterfacesProject.csproj",
+        "projectUniqueName": "C:\\Projetos\\Eric\\FiapTest\\InterfacesProject\\InterfacesProject.csproj",
         "projectName": "InterfacesProject",
-        "projectPath": "D:\\Projetos\\Entrevistas\\FIAP\\FIapTest\\InterfacesProject\\InterfacesProject.csproj",
-        "packagesPath": "C:\\Users\\Eric Giannetti - Dev\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\Entrevistas\\FIAP\\FIapTest\\InterfacesProject\\obj\\",
+        "projectPath": "C:\\Projetos\\Eric\\FiapTest\\InterfacesProject\\InterfacesProject.csproj",
+        "packagesPath": "C:\\Users\\eric.giannetti\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Eric\\FiapTest\\InterfacesProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Eric Giannetti - Dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\eric.giannetti\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

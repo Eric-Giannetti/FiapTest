@@ -15,34 +15,11 @@ public class AlunoBusinessRules : ICrud<Aluno>
         _alunoProvider = alunoProvider;
     }
 
-
-    public Result Atualizar(Aluno obj)
-    {
-        return _alunoProvider.Atualizar(obj);
-    }
-
-    public Result Deletar(int Id)
-    {
-        return _alunoProvider.Deletar(Id);
-    }
-    public Result Reativar(int Id)
-    {
-        return _alunoProvider.Reativar(Id);
-    }
-
-    public Result<List<Aluno>> GetAll()
-    {
-        return _alunoProvider.GetAll();
-    }
-
-    public Result<Aluno> GetById(int id)
-    {
-        return _alunoProvider.GetById(id);
-    }
-
     public Result Inserir(Aluno obj)
     {
-        if(obj.Senha != null)
+        if (obj is null) return Result.Fail("Objeto inválido");
+
+        if (obj.Senha != null)
         {
             if (!ValidarSenha(obj.Senha)) return Result.Fail("Senha inválida");
             obj.Senha = CalculateMD5Hash(obj.Senha);
@@ -51,6 +28,43 @@ public class AlunoBusinessRules : ICrud<Aluno>
 
 
         return _alunoProvider.Inserir(obj);
+    }
+
+    public Result Atualizar(Aluno obj)
+    {
+        if (obj is null || obj.Id == 0) return Result.Fail("Id inválido");
+
+        if(obj.Senha != null)
+        {
+            if (!ValidarSenha(obj.Senha)) return Result.Fail("Senha inválida");
+            obj.Senha = CalculateMD5Hash(obj.Senha);
+        }
+        else return Result.Fail("Senha inválida");
+
+
+        return _alunoProvider.Atualizar(obj);
+    }
+
+    public Result Deletar(int Id)
+    {
+        if (Id == 0) return Result.Fail("Id inválido");
+        return _alunoProvider.Deletar(Id);
+    }
+    public Result Reativar(int Id)
+    {
+        if (Id == 0) return Result.Fail("Id inválido");
+        return _alunoProvider.Reativar(Id);
+    }
+
+    public Result<List<Aluno>> GetAll()
+    {
+        return _alunoProvider.GetAll();
+    }
+
+    public Result<Aluno> GetById(int Id)
+    {
+        if (Id == 0) return Result.Fail("Id inválido");
+        return _alunoProvider.GetById(Id);
     }
 
     public static string CalculateMD5Hash(string input)

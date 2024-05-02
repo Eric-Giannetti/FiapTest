@@ -22,49 +22,83 @@ public class AlunoProvider : ICrud<Aluno>
 
     public Result Atualizar(Aluno obj)
     {
-        try
+        using (var connection = new MySqlConnection(_connectionString))
         {
-            return Result.Ok();
-        }
-        catch (Exception ex)
-        {
-            return Result.Fail(ex.Message);
+            try
+            {
+                connection.Open();
+                string query = $"UPDATE Aluno SET ";
+
+                if(obj.Nome != null)    query += $"Nome = @Nome";
+                if(obj.Usuario != null) query += $"Usuario = @Usuario";
+                if(obj.Senha != null)   query += $"Senha = @Senha";
+
+                    query += $" WHERE Id = @Id";
+                connection.Execute(query, obj);
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
         }
     }
 
     public Result Deletar(int Id)
     {
-        try
+        using (var connection = new MySqlConnection(_connectionString))
         {
-            return Result.Ok();
-        }
-        catch (Exception ex)
-        {
-            return Result.Fail(ex.Message);
+            try
+            {
+                connection.Open();
+                string query = $"UPDATE Aluno SET IsDeleted = 1 WHERE Id = {Id}";
+                connection.Execute(query);
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
         }
     }
 
     public Result<List<Aluno>> GetAll()
     {
-        try
+        using (var connection = new MySqlConnection(_connectionString))
         {
-            return Result.Ok();
-        }
-        catch (Exception ex)
-        {
-            return Result.Fail(ex.Message);
+            try
+            {
+                connection.Open();
+                string query = $"SELECT * FROM Aluno";
+                var result = connection.Query<Aluno>(query).ToList();
+                if (result == null) return Result.Fail("Nenhum usuário encontrado");
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
         }
     }
 
-    public Result<Aluno> GetById(int id)
+    public Result<Aluno> GetById(int Id)
     {
-        try
+        using (var connection = new MySqlConnection(_connectionString))
         {
-            return Result.Ok();
-        }
-        catch (Exception ex)
-        {
-            return Result.Fail(ex.Message);
+            try
+            {
+                connection.Open();
+                string query = $"SELECT * FROM Aluno WHERE Id = {Id}";
+                var result = connection.QuerySingle<Aluno>(query);
+                if (result == null) return Result.Fail("Nenhum usuário encontrado");
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
         }
     }
 
@@ -83,22 +117,24 @@ public class AlunoProvider : ICrud<Aluno>
             {
                 return Result.Fail(ex.Message);
             }
-            finally
-            {
-                connection.Close();
-            }
         }
     }
 
-    public Result Reativar(int id)
+    public Result Reativar(int Id)
     {
-        try
+        using (var connection = new MySqlConnection(_connectionString))
         {
-            return Result.Ok();
-        }
-        catch (Exception ex)
-        {
-            return Result.Fail(ex.Message);
+            try
+            {
+                connection.Open();
+                string query = $"UPDATE Aluno SET IsDeleted = 0 WHERE Id = {Id}";
+                connection.Execute(query);
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
         }
     }
 }
