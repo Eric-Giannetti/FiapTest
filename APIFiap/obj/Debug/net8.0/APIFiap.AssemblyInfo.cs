@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("InterfacesProject")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("APIFiap")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f150c405b7dada8626832fea03d89b80a59cf2a")]
-[assembly: System.Reflection.AssemblyProductAttribute("InterfacesProject")]
-[assembly: System.Reflection.AssemblyTitleAttribute("InterfacesProject")]
+[assembly: System.Reflection.AssemblyProductAttribute("APIFiap")]
+[assembly: System.Reflection.AssemblyTitleAttribute("APIFiap")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

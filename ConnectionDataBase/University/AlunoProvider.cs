@@ -82,6 +82,11 @@ public class AlunoProvider : ICrud<Aluno>
         }
     }
 
+    public Result<List<Aluno>> GetAlunosByTurmaId(int turmaId)
+    {
+        throw new NotImplementedException();
+    }
+
     public Result<Aluno> GetById(int Id)
     {
         using (var connection = new MySqlConnection(_connectionString))

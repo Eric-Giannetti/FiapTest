@@ -1,0 +1,6 @@
+@APIFiap_HostAddress = http://localhost:5001
+
+GET {{APIFiap_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

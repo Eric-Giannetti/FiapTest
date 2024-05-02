@@ -141,10 +141,95 @@ public class TurmaProvider : ICrud<Turma>
         using (var connection = new MySqlConnection(_connectionString))
         {
             connection.Open();
-            string query = $"SELECT * FROM Turma WHERE NomeTurma = {nomeTurma}";
+            string query = $"SELECT Id,CursoId,NomeTurma,Ano,IsDeleted FROM Turma WHERE NomeTurma = {nomeTurma}";
             var result = connection.QuerySingle<Turma>(query) != null;
 
             return result;
+        }
+    }
+
+    public Result<List<Turma>> GetTurmasByCursoId(int cursoId)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"SELECT Id,CursoId,NomeTurma,Ano,IsDeleted FROM Turma WHERE CursoId = {cursoId}";
+                var result = connection.Query<Turma>(query).ToList();
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
+        }
+    }
+
+    public Result<List<Turma>> GetTurmasByAlunoId(int alunoId)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = @$"SELECT 
+                                        Id,
+                                        CursoId,
+                                        NomeTurma,
+                                        Ano,
+                                        IsDeleted FROM Turma 
+
+                                        inner join AlunoTurma on Turma.Id = AlunoTurma.TurmaId
+                                        inner join Aluno on AlunoTurma.AlunoId = Aluno.Id
+
+                                        WHERE Aluno.Id = {alunoId}";
+                var result = connection.Query<Turma>(query).ToList();
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
+        }
+    }
+
+    public Result AddAlunoTurma(AlunoTurma alunoTurma)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"INSERT INTO AlunoTurma(AlunoId, TurmaId) VALUES (@AlunoId, @TurmaId)";
+                connection.Execute(query, alunoTurma);
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
+        }
+    }
+
+    public Result<List<AlunoTurma>> GetAllTurmasWithAlunos()
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"SELECT AlunoId, TurmaId FROM AlunoTurma";
+                var result = connection.Query<AlunoTurma>(query).ToList();
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
         }
     }
 }

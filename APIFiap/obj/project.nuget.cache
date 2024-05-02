@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "bU+jn9w5X242kOsC6AefeZISGCULNBIJNtW8QXE3fwv0qggzqJFg1LeO25X68jVeoyAxRnIncG7GMxppRCt1Fw==",
+  "success": true,
+  "projectFilePath": "C:\\Projetos\\Eric\\FiapTest\\APIFiap\\APIFiap.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eric.giannetti\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\eric.giannetti\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\eric.giannetti\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\eric.giannetti\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\eric.giannetti\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\eric.giannetti\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

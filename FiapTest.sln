@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityDtos", "Universit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{5AF7A4F9-1FFA-4A86-AE21-E9391CAA671A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfacesProject", "InterfacesProject\InterfacesProject.csproj", "{25072EEF-1F3F-4DF1-9692-5D37764D1085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfacesProject", "InterfacesProject\InterfacesProject.csproj", "{25072EEF-1F3F-4DF1-9692-5D37764D1085}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIFiap", "APIFiap\APIFiap.csproj", "{5ED59610-EAC3-48B1-BE6D-3ED63D22EA37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,10 @@ Global
 		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25072EEF-1F3F-4DF1-9692-5D37764D1085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED59610-EAC3-48B1-BE6D-3ED63D22EA37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED59610-EAC3-48B1-BE6D-3ED63D22EA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED59610-EAC3-48B1-BE6D-3ED63D22EA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED59610-EAC3-48B1-BE6D-3ED63D22EA37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{DADDBE5E-59E8-4FBD-AA0C-59A03619FE55} = {BE57B925-8D06-4938-826B-66E0353EDB3A}
 		{0FC0B645-5CE0-4EF8-8407-DDB2CEEC4F0F} = {169E9901-17DB-4140-894A-6BE37667B1D9}
 		{25072EEF-1F3F-4DF1-9692-5D37764D1085} = {5AF7A4F9-1FFA-4A86-AE21-E9391CAA671A}
+		{5ED59610-EAC3-48B1-BE6D-3ED63D22EA37} = {2E6E1619-8A12-46D9-802A-77CF6026F053}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40AF482C-2800-4DD7-AD5E-5D288D6B4355}

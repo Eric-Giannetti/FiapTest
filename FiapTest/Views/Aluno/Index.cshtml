@@ -1,0 +1,24 @@
+﻿@model List<UniversityModels.Aluno>
+@{
+    ViewData["Title"] = "Cadastro de Aluno";
+}
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Usuário</th>
+        <th>Senha</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var aluno in Model)
+    {
+        <tr>
+            <td>@aluno.Id</td>
+            <td>@aluno.Nome</td>
+            <td>@aluno.Usuario</td>
+            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Editar </a></button></td>
+            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> @(aluno.IsDeleted ? "Reativar" : "Excluir") </a></button></td>
+        </tr>
+    }
+</table>

@@ -85,4 +85,10 @@ public class AlunoBusinessRules : ICrud<Aluno>
         string pattern = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!?])(?=.*[a-zA-Z]).{8,}$";
         return Regex.IsMatch(senha, pattern);
     }
+
+    public Result<List<Aluno>> GetAlunosByTurmaId(int TurmaId)
+    {
+        if (TurmaId == 0) return Result.Fail<List<Aluno>>("Turma Não Encontrada");
+        return _alunoProvider.GetAlunosByTurmaId(TurmaId);
+    }
 }

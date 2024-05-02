@@ -11,4 +11,8 @@
     <Folder Include="Turma\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UniversityModels\UniversityModels.csproj" />
+  </ItemGroup>
+
 </Project>
