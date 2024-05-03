@@ -51,5 +51,5 @@ O banco de dados possui três tabelas principais:
 
 1. Clone este repositório.
 2. Configure sua conexão com o banco de dados MySQL no arquivo appsettings.json.
-3. No terminal, navegue até o diretório raiz do projeto e execute o comando dotnet run.
+3. No terminal, navegue até o diretório raiz do projeto e escolha o projeto que deseja inicializar localizado na pasta Hosts.
 4. O Projeto possui duas API, uma MVC para testes visuais e uma Para Requisições Rest
