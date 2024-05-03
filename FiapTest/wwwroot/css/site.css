@@ -64,7 +64,7 @@ tr:nth-child(even) {
 
 
 
-input {
+input, select {
     margin: 10px 0;
     background-color: rgba(66, 75, 80, .3);
     border: 0 none;

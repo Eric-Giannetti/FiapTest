@@ -1,4 +1,4 @@
-﻿@model List<UniversityModels.Turma>
+﻿@model List<UniversityDtos.Turma.TurmaDto>
 @{
     ViewData["Title"] = "Cadastro de turma";
 }
@@ -17,7 +17,7 @@
     {
         <tr>
             <td>@turma.Id</td>
-            <td style="@(turma.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@turma.CursoId</td>
+            <td style="@(turma.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@turma.Curso</td>
             <td style="@(turma.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@turma.NomeTurma</td>
             <td style="@(turma.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@turma.Ano</td>
             @if (!turma.IsDeleted)

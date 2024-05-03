@@ -18,12 +18,12 @@ public class AlunoTurmaController : Controller
 
     public IActionResult Index()
     {
-       List<AlunoTurmaDto> result = new List<AlunoTurmaDto>();
+        List<AlunoTurmaDto> result = new List<AlunoTurmaDto>();
         var alunoTurmas = _turmaBusinessRules.GetAllTurmasWithAlunos().ValueOrDefault;
 
-        if(alunoTurmas != null)
+        if (alunoTurmas != null)
         {
-            foreach(var item in alunoTurmas)
+            foreach (var item in alunoTurmas)
             {
                 result.Add(new AlunoTurmaDto
                 {
@@ -38,14 +38,18 @@ public class AlunoTurmaController : Controller
 
     public IActionResult Create(AlunoTurmaDto alunoTurma)
     {
-        var item = new AlunoTurma { AlunoId = alunoTurma.aluno.Id, TurmaId = alunoTurma.turma.Id };
-        _turmaBusinessRules.AddAlunoTurma(item);
-        return View();
+        var result = new CreateAlunoTurma
+        {
+            alunos = _alunoBusinessRules.GetAll().ValueOrDefault,
+            turmas = _turmaBusinessRules.GetAll().ValueOrDefault
+        };
+        return View(result);
     }
-    public IActionResult Adicionar(AlunoTurma obj)
+    public IActionResult Adicionar(CreateAlunoTurma obj)
     {
-        _turmaBusinessRules.AddAlunoTurma(obj);
-        return RedirectToAction("Index", "AlunoTurmaDto");
+        var alunoTurma = new AlunoTurma { AlunoId = obj.AlunoId, TurmaId = obj.TurmaId };
+        _turmaBusinessRules.AddAlunoTurma(alunoTurma);
+        return RedirectToAction("Index", "AlunoTurma");
     }
 
     public IActionResult Excluir(int Id)

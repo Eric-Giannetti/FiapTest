@@ -1,5 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model UniversityModels.Turma
 @{
+    ViewData["Title"] = "Cadastro de Turma";
 }
+
+<form method="post" asp-controller="Turma" asp-action="Edit">
+    <div>
+        <input asp-for="Id" type="hidden" />
+        <label asp-for="NomeTurma">Nome:</label>
+        <input asp-for="NomeTurma" />
+    </div>
+    <div>
+        <label asp-for="Ano">Ano:</label>
+        <input asp-for="Ano" />
+    </div>
+    <div>
+        <label asp-for="CursoId">Curso:</label>
+        <select asp-for="CursoId">
+            @foreach (var curso in Enum.GetValues(typeof(UniversityModels.Enum.CursoEnum)))
+            {
+                <option value="@Convert.ToInt32(curso)">@curso</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn">Cadastrar</button>
+</form>

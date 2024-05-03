@@ -1,1 +1,20 @@
-﻿
+﻿@model UniversityDtos.AlunoTurma.CreateAlunoTurma
+
+
+
+<form method="put" asp-controller="AlunoTurma" asp-action="Adicionar">
+    <select asp-for="AlunoId" style="width: 50%;">
+        @foreach (var aluno in Model.alunos)
+        {
+            <option value="@aluno.Id">@aluno.Nome</option>
+        }
+    </select>
+
+    <select asp-for="TurmaId" style="width: 50%;">
+        @foreach (var turma in Model.turmas)
+        {
+            <option value="@turma.Id">@turma.NomeTurma</option>
+        }
+    </select>
+    <button class="btn" type="submit">Salvar</button>
+</form>

@@ -28,8 +28,8 @@ public class TurmaProvider : ICrud<Turma>
                 connection.Open();
                 string query = $"UPDATE Turma SET ";
 
-                if (obj.CursoId != null) query += $"CursoId = @CursoId";
-                if (obj.NomeTurma != null) query += $"NomeTurma = @NomeTurma";
+                if (obj.CursoId != null) query += $"CursoId = @CursoId, ";
+                if (obj.NomeTurma != null) query += $"NomeTurma = @NomeTurma, ";
                 if (obj.Ano != null) query += $"Ano = @Ano";
 
                 query += $" WHERE Id = @Id";
@@ -262,6 +262,44 @@ public class TurmaProvider : ICrud<Turma>
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+    }
+
+    public Result<List<AlunoTurma>> GetAlunoTurmaByAlunoId(int alunoId)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"SELECT AlunoId, TurmaId FROM AlunoTurma where AlunoId = @alunoId";
+                var result = connection.Query<AlunoTurma>(query, new {alunoId = alunoId }).ToList();
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
+            }
+        }
+    }
+
+    public Result<List<AlunoTurma>> GetAlunoTurmaByTurmaId(int turmaId)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"SELECT AlunoId, TurmaId FROM AlunoTurma where TurmaId = @turmaId";
+                var result = connection.Query<AlunoTurma>(query, new { turmaId = turmaId }).ToList();
+
+                return Result.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(ex.Message);
             }
         }
     }

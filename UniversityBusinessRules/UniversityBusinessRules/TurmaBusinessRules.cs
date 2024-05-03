@@ -67,12 +67,6 @@ public class TurmaBusinessRules : ICrud<Turma>
         return _turmaProvider.GetTurmasByCursoId(CursoId);
     }
 
-    public Result<List<Turma>> GetTurmasByAlunoId(int AlunoId)
-    {
-        if (AlunoId == 0) return Result.Fail<List<Turma>>("Id inválido");
-        return _turmaProvider.GetTurmasByAlunoId(AlunoId);
-    }
-
     public Result AddAlunoTurma(AlunoTurma alunoTurma)
     {
         if (alunoTurma.AlunoId == 0 || alunoTurma.TurmaId == 0) return Result.Fail("Id inválido");
@@ -85,5 +79,16 @@ public class TurmaBusinessRules : ICrud<Turma>
     public void DeleteAlunoTurma(int id)
     {
         _turmaProvider.DeleteAlunoTurma(id);
+    }
+
+    public Result<List<AlunoTurma>> GetAlunoTurmaByAlunoId(int AlunoId)
+    {
+        if (AlunoId == 0) return Result.Fail("Id inválido");
+        return _turmaProvider.GetAlunoTurmaByAlunoId(AlunoId);
+    }
+    public Result<List<AlunoTurma>> GetAlunoTurmaByTurmaId(int TurmaId)
+    {
+        if (TurmaId == 0) return Result.Fail("Id inválido");
+        return _turmaProvider.GetAlunoTurmaByTurmaId(TurmaId);
     }
 }

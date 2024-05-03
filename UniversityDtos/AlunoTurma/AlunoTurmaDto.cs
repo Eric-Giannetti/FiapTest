@@ -11,6 +11,6 @@ public class AlunoTurmaDto
 {
     public int Id { get; set; }
     public Aluno aluno { get; set; }
-    public Turma turma { get; set; }
+    public UniversityModels.Turma turma { get; set; }
     public bool IsDeleted { get; set; } = false;
 }
