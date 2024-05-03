@@ -26,14 +26,31 @@ public class TurmaProvider : ICrud<Turma>
             try
             {
                 connection.Open();
-                string query = $"UPDATE Turma SET ";
+                var parameters = new DynamicParameters();
+                var queryBuilder = new StringBuilder("UPDATE Turma SET ");
 
-                if (obj.CursoId != null) query += $"CursoId = @CursoId, ";
-                if (obj.NomeTurma != null) query += $"NomeTurma = @NomeTurma, ";
-                if (obj.Ano != null) query += $"Ano = @Ano";
+                if (obj.CursoId != null)
+                {
+                    queryBuilder.Append("CursoId = @CursoId, ");
+                    parameters.Add("@CursoId", obj.CursoId);
+                }
+                if (obj.NomeTurma != null)
+                {
+                    queryBuilder.Append("NomeTurma = @NomeTurma, ");
+                    parameters.Add("@NomeTurma", obj.NomeTurma);
+                }
+                if (obj.Ano != null)
+                {
+                    queryBuilder.Append("Ano = @Ano, ");
+                    parameters.Add("@Ano", obj.Ano);
+                }
 
-                query += $" WHERE Id = @Id";
-                connection.Execute(query, obj);
+                queryBuilder.Length -= 2;
+
+                queryBuilder.Append(" WHERE Id = @Id");
+                parameters.Add("@Id", obj.Id);
+
+                connection.Execute(queryBuilder.ToString(), parameters);
                 return Result.Ok();
             }
             catch (Exception ex)

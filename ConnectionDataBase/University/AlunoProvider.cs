@@ -27,16 +27,35 @@ public class AlunoProvider : ICrud<Aluno>
             try
             {
                 connection.Open();
-                string query = $"UPDATE Aluno SET ";
+                var parameters = new DynamicParameters();
+                var queryBuilder = new StringBuilder("UPDATE Aluno SET ");
 
-                if(obj.Nome != null)    query += $"Nome = @Nome, ";
-                if(obj.Usuario != null) query += $"Usuario = @Usuario ";
-                if(obj.Senha != null)   query += $", Senha = @Senha ";
+                if (obj.Nome != null)
+                {
+                    queryBuilder.Append("Nome = @Nome, ");
+                    parameters.Add("@Nome", obj.Nome);
+                }
+                if (obj.Usuario != null)
+                {
+                    queryBuilder.Append("Usuario = @Usuario, ");
+                    parameters.Add("@Usuario", obj.Usuario);
+                }
+                if (obj.Senha != null)
+                {
+                    queryBuilder.Append("Senha = @Senha, ");
+                    parameters.Add("@Senha", obj.Senha);
+                }
 
-                    query += $" WHERE Id = @Id";
-                connection.Execute(query, obj);
+                // Remove a última vírgula e espaço
+                queryBuilder.Length -= 2;
+
+                // Adiciona a condição WHERE
+                queryBuilder.Append(" WHERE Id = @Id");
+                parameters.Add("@Id", obj.Id);
+
+                // Executa a consulta
+                connection.Execute(queryBuilder.ToString(), parameters);
                 return Result.Ok();
-            }
             catch (Exception ex)
             {
                 return Result.Fail(ex.Message);
