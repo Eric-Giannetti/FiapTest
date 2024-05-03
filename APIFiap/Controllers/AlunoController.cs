@@ -36,7 +36,7 @@ public class AlunoController : Controller
         if (result.IsFailed) return BadRequest(result.Errors[0].Message);
         return NoContent();
     }
-    [HttpDelete("Reativar/{id}")]
+    [HttpPatch("Reativar/{id}")]
     public IActionResult Reativar(int id)
     {
         var result = _alunoBusinessRules.Reativar(id);
