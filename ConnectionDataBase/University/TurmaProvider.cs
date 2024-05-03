@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,11 @@ public class TurmaProvider : ICrud<Turma>
     private readonly string _connectionString;
     public TurmaProvider(IConfiguration config)
     {
-        _connectionString = config.GetConnectionString("MySqlConnectionString");
+        _connectionString = config.GetConnectionString("SqlConnection");
     }
     public Result Atualizar(Turma obj)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -62,7 +63,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result Deletar(int Id)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -79,7 +80,7 @@ public class TurmaProvider : ICrud<Turma>
     }
     public Result Reativar(int Id)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -97,7 +98,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<List<Turma>> GetAll()
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -117,7 +118,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<Turma> GetById(int Id)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -137,7 +138,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result Inserir(Turma obj)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -155,7 +156,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public bool VerificarTurmaExistente(string nomeTurma)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
             string query = "SELECT Id, CursoId, NomeTurma, Ano, IsDeleted FROM Turma WHERE NomeTurma = @NomeTurma";
@@ -167,7 +168,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<List<Turma>> GetTurmasByCursoId(int cursoId)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -186,7 +187,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<List<Turma>> GetTurmasByAlunoId(int alunoId)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -215,7 +216,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result AddAlunoTurma(AlunoTurma alunoTurma)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -233,7 +234,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<List<AlunoTurma>> GetAllTurmasWithAlunos()
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -252,7 +253,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public void DeleteAlunoTurma(int TurmaId, int AlunoId)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -268,7 +269,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public bool VerificarAlunoTurmaExistente(int alunoId, int turmaId)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -285,7 +286,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<List<AlunoTurma>> GetAlunoTurmaByAlunoId(int alunoId)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -304,7 +305,7 @@ public class TurmaProvider : ICrud<Turma>
 
     public Result<List<AlunoTurma>> GetAlunoTurmaByTurmaId(int turmaId)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {

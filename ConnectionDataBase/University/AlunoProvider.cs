@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using FluentResults;
 using InterfacesProject;
+using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 using System;
@@ -17,12 +18,12 @@ public class AlunoProvider : ICrud<Aluno>
     private readonly string _connectionString;
     public AlunoProvider(IConfiguration config)
     {
-        _connectionString = config.GetConnectionString("MySqlConnectionString");
+        _connectionString = config.GetConnectionString("SqlConnection");
     }
 
     public Result Atualizar(Aluno obj)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -56,6 +57,7 @@ public class AlunoProvider : ICrud<Aluno>
                 // Executa a consulta
                 connection.Execute(queryBuilder.ToString(), parameters);
                 return Result.Ok();
+            }
             catch (Exception ex)
             {
                 return Result.Fail(ex.Message);
@@ -65,7 +67,7 @@ public class AlunoProvider : ICrud<Aluno>
 
     public Result Deletar(int Id)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -83,7 +85,7 @@ public class AlunoProvider : ICrud<Aluno>
 
     public Result<List<Aluno>> GetAll()
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -108,7 +110,7 @@ public class AlunoProvider : ICrud<Aluno>
 
     public Result<Aluno> GetById(int Id)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -128,7 +130,7 @@ public class AlunoProvider : ICrud<Aluno>
 
     public Result Inserir(Aluno obj)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {
@@ -146,7 +148,7 @@ public class AlunoProvider : ICrud<Aluno>
 
     public Result Reativar(int Id)
     {
-        using (var connection = new MySqlConnection(_connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             try
             {

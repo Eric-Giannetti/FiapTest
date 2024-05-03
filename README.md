@@ -15,37 +15,34 @@ O banco de dados possui três tabelas principais:
 1. **Aluno**: Armazena informações dos alunos, incluindo nome, usuário, senha e um indicador de exclusão.
    
    ```sql
-   CREATE TABLE `aluno` (
-     `Id` int NOT NULL AUTO_INCREMENT,
-     `Nome` varchar(100) DEFAULT NULL,
-     `Usuario` varchar(100) DEFAULT NULL,
-     `Senha` varchar(100) DEFAULT NULL,
-     `IsDeleted` tinyint(1) DEFAULT NULL,
-     PRIMARY KEY (`Id`)
-   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+        CREATE TABLE aluno (
+          Id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+          Nome varchar(100) NULL,
+          Usuario varchar(100) NULL,
+          Senha varchar(100) NULL,
+          IsDeleted bit NULL
+      );
 
 2. **Turma**: Armazena informações das turmas, incluindo o curso associado, nome da turma, ano e um indicador de exclusão.
 
     ```sql
-    CREATE TABLE `turma` (
-        `Id` int NOT NULL AUTO_INCREMENT,
-        `CursoId` int DEFAULT NULL,
-        `NomeTurma` varchar(100) DEFAULT NULL,
-        `Ano` int DEFAULT NULL,
-        `IsDeleted` tinyint(1) DEFAULT NULL,
-        PRIMARY KEY (`Id`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+      CREATE TABLE turma (
+        Id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+        CursoId int NULL,
+        NomeTurma varchar(100) NULL,
+        Ano int NULL,
+        IsDeleted bit NULL
+      );
 
 3. **AlunoTurma**: Tabela de associação entre alunos e turmas.
     ```sql
-    CREATE TABLE `alunoturma` (
-    `AlunoId` int NOT NULL,
-    `TurmaId` int NOT NULL,
-    PRIMARY KEY (`AlunoId`,`TurmaId`),
-    KEY `TurmaId` (`TurmaId`),
-    CONSTRAINT `alunoturma_ibfk_1` FOREIGN KEY (`AlunoId`) REFERENCES `aluno` (`Id`),
-    CONSTRAINT `alunoturma_ibfk_2` FOREIGN KEY (`TurmaId`) REFERENCES `turma` (`Id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CREATE TABLE alunoturma (
+    AlunoId int NOT NULL,
+    TurmaId int NOT NULL,
+    CONSTRAINT PK_AlunoTurma PRIMARY KEY (AlunoId, TurmaId),
+    CONSTRAINT FK_AlunoTurma_Aluno FOREIGN KEY (AlunoId) REFERENCES aluno(Id),
+    CONSTRAINT FK_AlunoTurma_Turma FOREIGN KEY (TurmaId) REFERENCES turma(Id)
+  );
 
 ## Como Executar
 
