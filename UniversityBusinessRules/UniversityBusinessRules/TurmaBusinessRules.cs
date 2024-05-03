@@ -46,6 +46,8 @@ public class TurmaBusinessRules : ICrud<Turma>
 
     public Result Inserir(Turma obj)
     {
+        if (obj is null) return Result.Fail("Objeto inválido");
+        if (obj.NomeTurma == null) return Result.Fail("Nome inválido");
         var ExistTurma = _turmaProvider.VerificarTurmaExistente(obj.NomeTurma);
         if (ExistTurma) return Result.Fail("Turma já existe");
         if (obj.Ano < DateTime.Now.Year) return Result.Fail("Data de início não pode ser maior que a data de fim");
@@ -60,13 +62,6 @@ public class TurmaBusinessRules : ICrud<Turma>
 
         return Result.Ok(result);
     }
-
-    public Result<List<Turma>> GetTurmasByCursoId(int CursoId)
-    {
-        if (CursoId == 0) return Result.Fail<List<Turma>>("Id inválido");
-        return _turmaProvider.GetTurmasByCursoId(CursoId);
-    }
-
     public Result AddAlunoTurma(AlunoTurma alunoTurma)
     {
         if (alunoTurma.AlunoId == 0 || alunoTurma.TurmaId == 0) return Result.Fail("Id inválido");
@@ -75,13 +70,11 @@ public class TurmaBusinessRules : ICrud<Turma>
         if (exist) return Result.Fail("Aluno já cadastrado na turma");
         return _turmaProvider.AddAlunoTurma(alunoTurma);
     }
-
     public Result DeleteAlunoTurma(int TurmaId, int AlunoId)
     {
         _turmaProvider.DeleteAlunoTurma(TurmaId, AlunoId);
         return Result.Ok();
     }
-
     public Result<List<AlunoTurma>> GetAlunoTurmaByAlunoId(int AlunoId)
     {
         if (AlunoId == 0) return Result.Fail("Id inválido");

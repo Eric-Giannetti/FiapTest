@@ -18,7 +18,7 @@ public class AlunoBusinessRules : ICrud<Aluno>
     public Result Inserir(Aluno obj)
     {
         if (obj is null) return Result.Fail("Objeto inválido");
-
+        if (obj.Nome == null || obj.Nome.Length < 3) return Result.Fail("Nome inválido");
         if (obj.Senha != null)
         {
             if (!ValidarSenha(obj.Senha)) return Result.Fail("Senha inválida");
@@ -33,8 +33,8 @@ public class AlunoBusinessRules : ICrud<Aluno>
     public Result Atualizar(Aluno obj)
     {
         if (obj is null || obj.Id == 0) return Result.Fail("Id inválido");
-
-        if(obj.Senha != null)
+        if (obj.Nome == null || obj.Nome.Length < 3) return Result.Fail("Nome inválido");
+        if (obj.Senha != null)
         {
             if (!ValidarSenha(obj.Senha)) return Result.Fail("Senha inválida");
             obj.Senha = CalculateMD5Hash(obj.Senha);
