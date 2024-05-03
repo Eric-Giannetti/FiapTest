@@ -23,10 +23,10 @@ namespace APIFiap.Controllers
             if (result.IsFailed) return BadRequest(result.Errors[0].Message);
             return Created();
         }
-        [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete/{TurmaId}-{AlunoId}")]
+        public IActionResult Delete(int TurmaId, int AlunoId)
         {
-            _turmaBusinessRules.DeleteAlunoTurma(id);
+            _turmaBusinessRules.DeleteAlunoTurma(TurmaId, AlunoId);
             return NoContent();
         }
 

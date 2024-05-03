@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UniversityBusinessRules.UniversityBusinessRules;
+using UniversityDtos;
 using UniversityDtos.AlunoTurma;
 using UniversityModels;
 
@@ -32,29 +33,38 @@ public class AlunoTurmaController : Controller
                 });
             }
         }
-
-        return View(result);
+        var retorno = new RetornoDto<List<AlunoTurmaDto>> { Object = result };
+        return View(retorno);
     }
 
-    public IActionResult Create(AlunoTurmaDto alunoTurma)
+    public IActionResult Create(RetornoDto<AlunoTurmaDto> alunoTurma)
     {
         var result = new CreateAlunoTurma
         {
-            alunos = _alunoBusinessRules.GetAll().ValueOrDefault,
-            turmas = _turmaBusinessRules.GetAll().ValueOrDefault
+            alunos = _alunoBusinessRules.GetAll().ValueOrDefault.Where(a => !a.IsDeleted).ToList(),
+            turmas = _turmaBusinessRules.GetAll().ValueOrDefault.Where(t => !t.IsDeleted).ToList()
         };
-        return View(result);
+        var retorno = new RetornoDto<CreateAlunoTurma> { Object = result, ErrorMessage = alunoTurma.ErrorMessage};
+        return View(retorno);
     }
-    public IActionResult Adicionar(CreateAlunoTurma obj)
+    public IActionResult Adicionar(RetornoDto<CreateAlunoTurma> obj)
     {
-        var alunoTurma = new AlunoTurma { AlunoId = obj.AlunoId, TurmaId = obj.TurmaId };
-        _turmaBusinessRules.AddAlunoTurma(alunoTurma);
+        var alunoTurma = new AlunoTurma { AlunoId = obj.Object.AlunoId, TurmaId = obj.Object.TurmaId };
+        var result = _turmaBusinessRules.AddAlunoTurma(alunoTurma);
+        if (result.IsFailed)
+        {
+            return RedirectToAction("Create", "AlunoTurma", new RetornoDto<AlunoTurmaDto> { ErrorMessage = result.Errors[0].Message, IsFailed = true });
+        }
         return RedirectToAction("Index", "AlunoTurma");
     }
 
-    public IActionResult Excluir(int Id)
+    public IActionResult Excluir(int TurmaId, int AlunoId)
     {
-        _turmaBusinessRules.DeleteAlunoTurma(Id);
-        return RedirectToAction("Index", "AlunoTurmaDto");
+        var result = _turmaBusinessRules.DeleteAlunoTurma(TurmaId, AlunoId);
+        if (result.IsFailed)
+        {
+            return RedirectToAction("Index", "AlunoTurma", new RetornoDto<AlunoTurmaDto> { ErrorMessage = result.Errors[0].Message, IsFailed = true });
+        }
+        return RedirectToAction("Index", "AlunoTurma");
     }
 }

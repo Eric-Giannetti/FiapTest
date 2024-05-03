@@ -72,13 +72,14 @@ public class TurmaBusinessRules : ICrud<Turma>
         if (alunoTurma.AlunoId == 0 || alunoTurma.TurmaId == 0) return Result.Fail("Id inválido");
 
         var exist = _turmaProvider.VerificarAlunoTurmaExistente(alunoTurma.AlunoId, alunoTurma.TurmaId);
-
+        if (exist) return Result.Fail("Aluno já cadastrado na turma");
         return _turmaProvider.AddAlunoTurma(alunoTurma);
     }
 
-    public void DeleteAlunoTurma(int id)
+    public Result DeleteAlunoTurma(int TurmaId, int AlunoId)
     {
-        _turmaProvider.DeleteAlunoTurma(id);
+        _turmaProvider.DeleteAlunoTurma(TurmaId, AlunoId);
+        return Result.Ok();
     }
 
     public Result<List<AlunoTurma>> GetAlunoTurmaByAlunoId(int AlunoId)

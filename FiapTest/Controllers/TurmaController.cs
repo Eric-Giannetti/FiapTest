@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UniversityBusinessRules.UniversityBusinessRules;
+using UniversityDtos.AlunoTurma;
+using UniversityDtos;
 using UniversityDtos.Turma;
 using UniversityModels;
 using UniversityModels.Enum;
@@ -32,32 +34,37 @@ public class TurmaController : Controller
                 });
             }
         }
-        return View(result);
+        var retorno = new RetornoDto<List<TurmaDto>> { Object = result };
+        return View(retorno);
     }
 
-    public IActionResult Create(Turma turma)
+    public IActionResult Create(RetornoDto<Turma> turma)
     {
         return View(turma);
     }
-    public IActionResult Adicionar(Turma turma)
+    public IActionResult Adicionar(RetornoDto<Turma> turma)
     {
-        if (ModelState.IsValid)
+            var result = _turmaBusinessRules.Inserir(turma.Object);
+        if (result.IsFailed)
         {
-            _turmaBusinessRules.Inserir(turma);
-            return RedirectToAction("Index", "Turma");
+            return RedirectToAction("Create", "Turma", new RetornoDto<Turma> { ErrorMessage = result.Errors[0].Message, IsFailed = true });
         }
-        return View(turma);
+        return RedirectToAction("Index", "Turma");
     }
-    public IActionResult Editar(int id)
+    public IActionResult Editar(int obj)
     {
-        var result = _turmaBusinessRules.GetById(id);
-        return View(result.ValueOrDefault);
+        var result = _turmaBusinessRules.GetById(obj).ValueOrDefault;
+        var retorno = new RetornoDto<Turma> { Object = result };
+        return View(retorno);
     }
 
-    public IActionResult Edit(Turma turma)
+    public IActionResult Edit(RetornoDto<Turma> turma)
     {
-        var result = _turmaBusinessRules.Atualizar(turma);
-        if (result.IsFailed) return View("Editar", turma);
+        var result = _turmaBusinessRules.Atualizar(turma.Object);
+        if (result.IsFailed)
+        {
+            return RedirectToAction("Editar", "Turma", new RetornoDto<Turma> { Object = turma.Object,  ErrorMessage = result.Errors[0].Message, IsFailed = true });
+        }
         return RedirectToAction("Index", "Turma");
     }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UniversityBusinessRules.UniversityBusinessRules;
+using UniversityDtos;
 using UniversityModels;
 
 namespace FiapTest.Controllers;
@@ -19,31 +20,40 @@ public class AlunoController : Controller
         if (list != null)
             result = list.ToList();
 
-        return View(result);
+        var retorno = new RetornoDto<List<Aluno>> { Object = result };
+        return View(retorno);
     }
-    public IActionResult Create(Aluno aluno)
+    public IActionResult Create(RetornoDto<Aluno> aluno)
     {
         return View(aluno);
     }
-    public IActionResult Adicionar(Aluno aluno)
+    public IActionResult Adicionar(RetornoDto<Aluno> aluno)
     {
-        if (ModelState.IsValid)
+
+        var result = _alunoBusinessRules.Inserir(aluno.Object);
+        if (result.IsFailed)
         {
-            _alunoBusinessRules.Inserir(aluno);
-            return RedirectToAction("Index", "Aluno");
+            return RedirectToAction("Create", "Aluno", new RetornoDto<Aluno> { ErrorMessage = result.Errors[0].Message, IsFailed = true });
         }
-        return View(aluno);
+        return RedirectToAction("Index", "Aluno");
+
     }
 
-    public IActionResult Editar(int id)
+    public IActionResult Editar(int obj)
     {
-        var result = _alunoBusinessRules.GetById(id);
-        return View(result.ValueOrDefault);
+        var result = _alunoBusinessRules.GetById(obj).ValueOrDefault;
+        var retorno = new RetornoDto<Aluno> { Object = result };
+        return View(retorno);
     }
 
-    public IActionResult Edit(Aluno aluno)
+    public IActionResult Edit(RetornoDto<Aluno> aluno)
     {
-        var result = _alunoBusinessRules.Atualizar(aluno);
+
+        var result = _alunoBusinessRules.Atualizar(aluno.Object);
+        if (result.IsFailed)
+        {
+            return RedirectToAction("Editar", "Aluno", aluno.Object.Id);
+        }
         return RedirectToAction("Index", "Aluno");
     }
 
@@ -52,7 +62,7 @@ public class AlunoController : Controller
         var result = _alunoBusinessRules.Deletar(id);
         return RedirectToAction("Index", "Aluno");
     }
-    
+
     public IActionResult Reativar(int id)
     {
         var result = _alunoBusinessRules.Reativar(id);

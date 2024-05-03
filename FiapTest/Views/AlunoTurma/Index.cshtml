@@ -1,5 +1,9 @@
-﻿@model List<UniversityDtos.AlunoTurma.AlunoTurmaDto>
-
+﻿@using UniversityDtos
+@model RetornoDto<List<UniversityDtos.AlunoTurma.AlunoTurmaDto>>
+@if (Model.ErrorMessage != null)
+{
+    <h3>@Model.ErrorMessage</h3>
+}
 <button type="button" class="btn"><a asp-controller="AlunoTurma" asp-action="Create"> Cadastrar </a></button>
 <table>
     <tr>
@@ -7,12 +11,12 @@
         <th>Turma</th>
         <th></th>
     </tr>
-    @foreach (var aluno in Model)
+    @foreach (var aluno in Model.Object)
     {
         <tr>
             <td>@aluno.aluno.Nome</td>
             <td>@aluno.turma.NomeTurma</td>
-            <td><button type="button" class="btn"> <a asp-controller="AlunoTurmaDto" asp-action="Excluir" asp-route-id="@aluno.Id"> Excluir </a></button></td>
+            <td><button type="button" class="btn"> <a asp-controller="AlunoTurma" asp-action="Excluir" asp-route-alunoId="@aluno.aluno.Id" asp-route-turmaId="@aluno.turma.Id"> Excluir </a></button></td>
         </tr>
     }
 </table>

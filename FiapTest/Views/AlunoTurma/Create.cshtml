@@ -1,20 +1,30 @@
-﻿@model UniversityDtos.AlunoTurma.CreateAlunoTurma
+﻿@using UniversityDtos
+@model RetornoDto<UniversityDtos.AlunoTurma.CreateAlunoTurma>
 
 
-
+@if (Model.ErrorMessage != null)
+{
+    <h3>@Model.ErrorMessage</h3>
+}
 <form method="put" asp-controller="AlunoTurma" asp-action="Adicionar">
-    <select asp-for="AlunoId" style="width: 50%;">
-        @foreach (var aluno in Model.alunos)
-        {
-            <option value="@aluno.Id">@aluno.Nome</option>
-        }
-    </select>
+    <div class="row d-flex justify-content-center">
+        <select asp-for="Object.AlunoId" style="width: 45%;">
+            <option>Selecione um Aluno</option>
+            @foreach (var aluno in Model.Object.alunos)
+            {
+                <option value="@aluno.Id">@aluno.Nome</option>
+            }
+        </select>
 
-    <select asp-for="TurmaId" style="width: 50%;">
-        @foreach (var turma in Model.turmas)
-        {
-            <option value="@turma.Id">@turma.NomeTurma</option>
-        }
-    </select>
-    <button class="btn" type="submit">Salvar</button>
+        <select asp-for="Object.TurmaId" style="width: 45%;">
+            <option>Selecione uma turma</option>
+            @foreach (var turma in Model.Object.turmas)
+            {
+                <option value="@turma.Id">@turma.NomeTurma</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button class="btn" type="submit">Salvar</button>
+    </div>
 </form>

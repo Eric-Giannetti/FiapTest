@@ -233,15 +233,15 @@ public class TurmaProvider : ICrud<Turma>
         }
     }
 
-    public void DeleteAlunoTurma(int Id)
+    public void DeleteAlunoTurma(int TurmaId, int AlunoId)
     {
         using (var connection = new MySqlConnection(_connectionString))
         {
             try
             {
                 connection.Open();
-                string query = $"Delete from AlunoTurma WHERE Id = @Id";
-                connection.Execute(query, new {  Id = Id});
+                string query = $"Delete from AlunoTurma WHERE TurmaId = @TurmaId AND AlunoId = @AlunoId";
+                connection.Execute(query, new { TurmaId = TurmaId, AlunoId = AlunoId });
             }
             catch (Exception ex)
             {

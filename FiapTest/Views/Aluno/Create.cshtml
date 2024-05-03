@@ -1,23 +1,27 @@
-﻿@model UniversityModels.Aluno
+﻿@using UniversityDtos
+@using UniversityModels
+@model RetornoDto<Aluno>
 @{
     ViewData["Title"] = "Cadastro de Aluno";
 }
 
+@if (Model.ErrorMessage != null)
+{
+    <h3>@Model.ErrorMessage</h3>
+}
+
 <form method="post" asp-controller="Aluno" asp-action="Adicionar">
     <div>
-        <label asp-for="Nome">Nome:</label>
-        <input asp-for="Nome" />
-        <span asp-validation-for="Nome"></span>
+        <label asp-for="Object.Nome">Nome:</label>
+        <input asp-for="Object.Nome" />
     </div>
     <div>
-        <label asp-for="Usuario">Usuário:</label>
-        <input asp-for="Usuario" />
-        <span asp-validation-for="Usuario"></span>
+        <label asp-for="Object.Usuario">Usuário:</label>
+        <input asp-for="Object.Usuario" />
     </div>
     <div>
-        <label asp-for="Senha">Senha:</label>
-        <input asp-for="Senha" type="password" />
-        <span asp-validation-for="Senha"></span>
+        <label asp-for="Object.Senha">Senha:</label>
+        <input asp-for="Object.Senha" type="password" />
     </div>
     <button type="submit" class="btn">Cadastrar</button>
 </form>

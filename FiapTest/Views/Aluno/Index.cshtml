@@ -1,8 +1,12 @@
-﻿@model List<UniversityModels.Aluno>
+﻿@using UniversityDtos
+@model RetornoDto<List<UniversityModels.Aluno>>
 @{
     ViewData["Title"] = "Cadastro de Aluno";
 }
-
+@if (Model.ErrorMessage != null)
+{
+    <h3>@Model.ErrorMessage</h3>
+}
 <button type="button" class="btn"><a asp-controller="Aluno" asp-action="Create"> Cadastrar </a></button>
 <table>
     <tr>
@@ -12,7 +16,7 @@
         <th></th>
         <th></th>
     </tr>
-    @foreach (var aluno in Model)
+    @foreach (var aluno in Model.Object)
     {
         <tr>
             <td>@aluno.Id</td>
@@ -20,7 +24,7 @@
             <td style="@(aluno.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@aluno.Usuario</td>
             @if (!aluno.IsDeleted)
             {
-                <td> <button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Editar </a> </button></td>
+                <td> <button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-obj="@aluno.Id"> Editar </a> </button></td>
             }
             else
             {
