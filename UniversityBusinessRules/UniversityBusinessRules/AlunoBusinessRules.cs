@@ -39,7 +39,6 @@ public class AlunoBusinessRules : ICrud<Aluno>
             if (!ValidarSenha(obj.Senha)) return Result.Fail("Senha inválida");
             obj.Senha = CalculateMD5Hash(obj.Senha);
         }
-        else return Result.Fail("Senha inválida");
 
 
         return _alunoProvider.Atualizar(obj);

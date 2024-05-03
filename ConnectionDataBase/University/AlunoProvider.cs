@@ -29,9 +29,9 @@ public class AlunoProvider : ICrud<Aluno>
                 connection.Open();
                 string query = $"UPDATE Aluno SET ";
 
-                if(obj.Nome != null)    query += $"Nome = @Nome";
-                if(obj.Usuario != null) query += $"Usuario = @Usuario";
-                if(obj.Senha != null)   query += $"Senha = @Senha";
+                if(obj.Nome != null)    query += $"Nome = @Nome, ";
+                if(obj.Usuario != null) query += $"Usuario = @Usuario ";
+                if(obj.Senha != null)   query += $", Senha = @Senha ";
 
                     query += $" WHERE Id = @Id";
                 connection.Execute(query, obj);
@@ -51,8 +51,8 @@ public class AlunoProvider : ICrud<Aluno>
             try
             {
                 connection.Open();
-                string query = $"UPDATE Aluno SET IsDeleted = 1 WHERE Id = {Id}";
-                connection.Execute(query);
+                string query = $"UPDATE Aluno SET IsDeleted = 1 WHERE Id = @Id";
+                connection.Execute(query, new {Id = Id});
                 return Result.Ok();
             }
             catch (Exception ex)

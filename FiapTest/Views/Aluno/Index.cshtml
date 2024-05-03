@@ -16,10 +16,25 @@
     {
         <tr>
             <td>@aluno.Id</td>
-            <td>@aluno.Nome</td>
-            <td>@aluno.Usuario</td>
-            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Editar </a></button></td>
-            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> @(aluno.IsDeleted ? "Reativar" : "Excluir") </a></button></td>
+            <td style="@(aluno.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@aluno.Nome</td>
+            <td style="@(aluno.IsDeleted ? "text-decoration: line-through; color: #ccc" : "")">@aluno.Usuario</td>
+            @if (!aluno.IsDeleted)
+            {
+                <td> <button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Editar </a> </button></td>
+            }
+            else
+            {
+                <td></td>
+            }
+            <td>
+                <button type="button" class="btn">
+                    <a asp-controller="Aluno"
+                       asp-action="@(aluno.IsDeleted ? "Reativar" : "Desativar")"
+                       asp-route-id="@aluno.Id">
+                        @(aluno.IsDeleted ? "Reativar" : "Desativar")
+                    </a>
+                </button>
+            </td>
         </tr>
     }
 </table>

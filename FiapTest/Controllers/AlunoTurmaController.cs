@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UniversityBusinessRules.UniversityBusinessRules;
 using UniversityDtos.AlunoTurma;
+using UniversityModels;
 
 namespace FiapTest.Controllers;
 
@@ -20,14 +21,36 @@ public class AlunoTurmaController : Controller
        List<AlunoTurmaDto> result = new List<AlunoTurmaDto>();
         var alunoTurmas = _turmaBusinessRules.GetAllTurmasWithAlunos().ValueOrDefault;
 
-        foreach(var item in alunoTurmas)
+        if(alunoTurmas != null)
         {
-            result.Add(new AlunoTurmaDto
+            foreach(var item in alunoTurmas)
             {
-                aluno = _alunoBusinessRules.GetById(item.AlunoId).ValueOrDefault,
-                turma = _turmaBusinessRules.GetById(item.TurmaId).ValueOrDefault
-            });
+                result.Add(new AlunoTurmaDto
+                {
+                    aluno = _alunoBusinessRules.GetById(item.AlunoId).ValueOrDefault,
+                    turma = _turmaBusinessRules.GetById(item.TurmaId).ValueOrDefault
+                });
+            }
         }
+
         return View(result);
+    }
+
+    public IActionResult Create(AlunoTurmaDto alunoTurma)
+    {
+        var item = new AlunoTurma { AlunoId = alunoTurma.aluno.Id, TurmaId = alunoTurma.turma.Id };
+        _turmaBusinessRules.AddAlunoTurma(item);
+        return View();
+    }
+    public IActionResult Adicionar(AlunoTurma obj)
+    {
+        _turmaBusinessRules.AddAlunoTurma(obj);
+        return RedirectToAction("Index", "AlunoTurmaDto");
+    }
+
+    public IActionResult Excluir(int Id)
+    {
+        _turmaBusinessRules.DeleteAlunoTurma(Id);
+        return RedirectToAction("Index", "AlunoTurmaDto");
     }
 }

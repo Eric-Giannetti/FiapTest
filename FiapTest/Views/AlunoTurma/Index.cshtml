@@ -6,15 +6,13 @@
         <th>Aluno</th>
         <th>Turma</th>
         <th></th>
-        <th></th>
     </tr>
     @foreach (var aluno in Model)
     {
         <tr>
             <td>@aluno.aluno.Nome</td>
             <td>@aluno.turma.NomeTurma</td>
-            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Editar </a></button></td>
-            <td><button type="button" class="btn"> <a asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id"> Excluir </a></button></td>
+            <td><button type="button" class="btn"> <a asp-controller="AlunoTurmaDto" asp-action="Excluir" asp-route-id="@aluno.Id"> Excluir </a></button></td>
         </tr>
     }
 </table>

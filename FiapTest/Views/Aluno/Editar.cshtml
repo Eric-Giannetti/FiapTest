@@ -3,7 +3,8 @@
     ViewData["Title"] = "Cadastro de Aluno";
 }
 
-<form method="put" asp-controller="Aluno" asp-action="Index">
+<form method="put" asp-controller="Aluno" asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
     <div>
         <label asp-for="Nome">Nome:</label>
         <input asp-for="Nome" />

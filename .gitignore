@@ -1,25 +1,29 @@
 .vs/
+/.vs
 
-ConnectionDataBase/bin/Debug/net8.0
-ConnectionDataBase/obj
+/ConnectionDataBase/bin/Debug/net8.0
+/ConnectionDataBase/obj
 
-ConnectionDataBase/bin/Debug/net8.0
-ConnectionDataBase/obj
+/ConnectionDataBase/bin/Debug/net8.0
+/ConnectionDataBase/obj
 
-FiapTest/bin/Debug/net8.0
-FiapTest/obj
+/FiapTest/bin/Debug/net8.0
+/FiapTest/obj
 
-Models/bin/Debug/net8.0
-Models/obj
+/Models/bin/Debug/net8.0
+/Models/obj
 
-UniversityBusinessRules/bin/Debug/net8.0
-UniversityBusinessRules/obj
+/UniversityBusinessRules/bin/Debug/net8.0
+/UniversityBusinessRules/obj
 
-UniversityDtos/bin/Debug/net8.0
-UniversityDtos/obj
+/UniversityDtos/bin/Debug/net8.0
+/UniversityDtos/obj
 
-UniversityModels/bin/Debug/net8.0
-UniversityModels/obj
+/UniversityModels/bin/Debug/net8.0
+/UniversityModels/obj
 
-InterfacesProject/bin/Debug/net8.0
-InterfacesProject/obj
+/InterfacesProject/bin/Debug/net8.0
+/InterfacesProject/obj
+
+/APIFiap/bin/Debug/net8.0
+/APIFiap/obj

@@ -141,8 +141,8 @@ public class TurmaProvider : ICrud<Turma>
         using (var connection = new MySqlConnection(_connectionString))
         {
             connection.Open();
-            string query = $"SELECT Id,CursoId,NomeTurma,Ano,IsDeleted FROM Turma WHERE NomeTurma = {nomeTurma}";
-            var result = connection.QuerySingle<Turma>(query) != null;
+            string query = "SELECT Id, CursoId, NomeTurma, Ano, IsDeleted FROM Turma WHERE NomeTurma = @NomeTurma";
+            var result = connection.QueryFirstOrDefault<Turma>(query, new { NomeTurma = nomeTurma }) != null;
 
             return result;
         }
@@ -229,6 +229,39 @@ public class TurmaProvider : ICrud<Turma>
             catch (Exception ex)
             {
                 return Result.Fail(ex.Message);
+            }
+        }
+    }
+
+    public void DeleteAlunoTurma(int Id)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"Delete from AlunoTurma WHERE Id = @Id";
+                connection.Execute(query, new {  Id = Id});
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+
+    public bool VerificarAlunoTurmaExistente(int alunoId, int turmaId)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            try
+            {
+                connection.Open();
+                string query = $"SELECT AlunoId, TurmaId FROM AlunoTurma WHERE AlunoId = @AlunoId AND TurmaId = @TurmaId";
+                return connection.QuerySingle<AlunoTurma>(query, new { AlunoId = alunoId, TurmaId = turmaId }) != null;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

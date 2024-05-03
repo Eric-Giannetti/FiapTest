@@ -14,8 +14,12 @@ public class AlunoController : Controller
 
     public IActionResult Index()
     {
-        var result = _alunoBusinessRules.GetAll();
-        return View(result.ValueOrDefault);
+        var result = new List<Aluno>();
+        var list = _alunoBusinessRules.GetAll().ValueOrDefault;
+        if (list != null)
+            result = list.ToList();
+
+        return View(result);
     }
     public IActionResult Create(Aluno aluno)
     {
@@ -33,15 +37,21 @@ public class AlunoController : Controller
         return View(result.ValueOrDefault);
     }
 
+    public IActionResult Edit(Aluno aluno)
+    {
+        var result = _alunoBusinessRules.Atualizar(aluno);
+        return RedirectToAction("Index", "Aluno");
+    }
+
     public IActionResult Desativar(int id)
     {
         var result = _alunoBusinessRules.Deletar(id);
-        return View();
+        return RedirectToAction("Index", "Aluno");
     }
     
     public IActionResult Reativar(int id)
     {
         var result = _alunoBusinessRules.Reativar(id);
-        return View();
+        return RedirectToAction("Index", "Aluno");
     }
 }

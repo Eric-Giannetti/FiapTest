@@ -1,0 +1,23 @@
+﻿@model UniversityModels.Turma
+@{
+    ViewData["Title"] = "Cadastro de Turma";
+}
+
+<form method="post" asp-controller="Turma" asp-action="Create">
+    <div>
+        <label asp-for="NomeTurma">Nome:</label>
+        <input asp-for="NomeTurma" />
+        <span asp-validation-for="NomeTurma"></span>
+    </div>
+    <div>
+        <label asp-for="Ano">Ano:</label>
+        <input asp-for="Ano" />
+        <span asp-validation-for="Ano"></span>
+    </div>
+    <div>
+        <label asp-for="CursoId">Curso:</label>
+        <input asp-for="CursoId" type="password" />
+        <span asp-validation-for="CursoId"></span>
+    </div>
+    <button type="submit" class="btn">Cadastrar</button>
+</form>

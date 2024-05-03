@@ -8,6 +8,7 @@ namespace UniversityModels;
 
 public class AlunoTurma
 {
+    public int Id { get; set; }
     public int AlunoId { get; set; }
     public int TurmaId { get; set; }
 }
