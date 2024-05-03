@@ -10,18 +10,24 @@
     <div class="row d-flex justify-content-center">
         <select asp-for="Object.AlunoId" style="width: 45%;">
             <option>Selecione um Aluno</option>
-            @foreach (var aluno in Model.Object.alunos)
+            @if(Model.Object.alunos != null)
             {
-                <option value="@aluno.Id">@aluno.Nome</option>
+                @foreach (var aluno in Model.Object.alunos)
+                {
+                    <option value="@aluno.Id">@aluno.Nome</option>
+                }                
             }
         </select>
 
         <select asp-for="Object.TurmaId" style="width: 45%;">
             <option>Selecione uma turma</option>
-            @foreach (var turma in Model.Object.turmas)
+            @if(Model.Object.turmas != null)
             {
-                <option value="@turma.Id">@turma.NomeTurma</option>
-            }
+                @foreach (var turma in Model.Object.turmas)
+                {
+                    <option value="@turma.Id">@turma.NomeTurma</option>
+                }
+            })
         </select>
     </div>
     <div>

@@ -28,8 +28,8 @@ public class AlunoTurmaController : Controller
             {
                 result.Add(new AlunoTurmaDto
                 {
-                    aluno = _alunoBusinessRules.GetById(item.AlunoId).ValueOrDefault,
-                    turma = _turmaBusinessRules.GetById(item.TurmaId).ValueOrDefault
+                    aluno = _alunoBusinessRules.GetById(item.AlunoId.Value).ValueOrDefault,
+                    turma = _turmaBusinessRules.GetById(item.TurmaId.Value).ValueOrDefault
                 });
             }
         }
@@ -39,11 +39,16 @@ public class AlunoTurmaController : Controller
 
     public IActionResult Create(RetornoDto<AlunoTurmaDto> alunoTurma)
     {
-        var result = new CreateAlunoTurma
-        {
-            alunos = _alunoBusinessRules.GetAll().ValueOrDefault.Where(a => !a.IsDeleted).ToList(),
-            turmas = _turmaBusinessRules.GetAll().ValueOrDefault.Where(t => !t.IsDeleted).ToList()
-        };
+
+        var result = new CreateAlunoTurma();
+
+        var alunos = _alunoBusinessRules.GetAll().ValueOrDefault;
+        if(alunos != null)
+            result.alunos = alunos.Where(a => !a.IsDeleted).ToList();
+        var turmas = _turmaBusinessRules.GetAll().ValueOrDefault;
+        if(turmas != null)
+            result.turmas = turmas.Where(t => !t.IsDeleted).ToList();
+
         var retorno = new RetornoDto<CreateAlunoTurma> { Object = result, ErrorMessage = alunoTurma.ErrorMessage};
         return View(retorno);
     }

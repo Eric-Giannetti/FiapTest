@@ -71,7 +71,7 @@ public class TurmaBusinessRules : ICrud<Turma>
     {
         if (alunoTurma.AlunoId == 0 || alunoTurma.TurmaId == 0) return Result.Fail("Id inválido");
 
-        var exist = _turmaProvider.VerificarAlunoTurmaExistente(alunoTurma.AlunoId, alunoTurma.TurmaId);
+        var exist = _turmaProvider.VerificarAlunoTurmaExistente(alunoTurma.AlunoId.Value, alunoTurma.TurmaId.Value);
         if (exist) return Result.Fail("Aluno já cadastrado na turma");
         return _turmaProvider.AddAlunoTurma(alunoTurma);
     }
