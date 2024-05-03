@@ -28,13 +28,13 @@ O banco de dados possui três tabelas principais:
 
     ```sql
     CREATE TABLE `turma` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `CursoId` int DEFAULT NULL,
-  `NomeTurma` varchar(100) DEFAULT NULL,
-  `Ano` int DEFAULT NULL,
-  `IsDeleted` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+        `Id` int NOT NULL AUTO_INCREMENT,
+        `CursoId` int DEFAULT NULL,
+        `NomeTurma` varchar(100) DEFAULT NULL,
+        `Ano` int DEFAULT NULL,
+        `IsDeleted` tinyint(1) DEFAULT NULL,
+        PRIMARY KEY (`Id`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 3. **AlunoTurma**: Tabela de associação entre alunos e turmas.
     ```sql
