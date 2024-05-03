@@ -36,13 +36,13 @@ O banco de dados possui três tabelas principais:
 
 3. **AlunoTurma**: Tabela de associação entre alunos e turmas.
     ```sql
-  CREATE TABLE alunoturma (
-    AlunoId int NOT NULL,
-    TurmaId int NOT NULL,
-    CONSTRAINT PK_AlunoTurma PRIMARY KEY (AlunoId, TurmaId),
-    CONSTRAINT FK_AlunoTurma_Aluno FOREIGN KEY (AlunoId) REFERENCES aluno(Id),
-    CONSTRAINT FK_AlunoTurma_Turma FOREIGN KEY (TurmaId) REFERENCES turma(Id)
-  );
+      CREATE TABLE alunoturma (
+        AlunoId int NOT NULL,
+        TurmaId int NOT NULL,
+        CONSTRAINT PK_AlunoTurma PRIMARY KEY (AlunoId, TurmaId),
+        CONSTRAINT FK_AlunoTurma_Aluno FOREIGN KEY (AlunoId) REFERENCES aluno(Id),
+        CONSTRAINT FK_AlunoTurma_Turma FOREIGN KEY (TurmaId) REFERENCES turma(Id)
+      );
 
 ## Como Executar
 
